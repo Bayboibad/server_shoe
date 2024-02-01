@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoe Store</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    .custom-color {
+      background-color: orange !important;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    .navbar-brand {
+      color: white;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+    }
+
+    .navbar-toggler-icon {
+      background-color: white;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark custom-color">
+    <a class="navbar-brand" href="manage">Quản lý</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Vertical Tabs -->
+      <div class="col-md-3 col-12">
+        <div class="list-group" id="v-pills-tab" role="tablist">
+          <h3>Thêm</h3>
+          <a class="list-group-item list-group-item-action active" id="v-pills-category-tab" data-toggle="pill"
+            href="#v-pills-category" role="tab">Thêm thể loại</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-brand-tab" data-toggle="pill"
+            href="#v-pills-brand" role="tab">Thêm nhãn hàng</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-product-tab" data-toggle="pill"
+            href="#v-pills-product" role="tab">Thêm sản phẩm</a>
+          <h3>Quản lý</h3>
+          <a class="list-group-item list-group-item-action" id="v-pills-category-tab" data-toggle="pill"
+            href="#v-pills-categorys" role="tab">Quản lý thể loại</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-brand-tab" data-toggle="pill"
+            href="#v-pills-brands" role="tab">Quản lý nhãn hàng</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-product-tab" data-toggle="pill"
+            href="#v-pills-products" role="tab">Quản lý sản phẩm</a>
+          <a class="list-group-item list-group-item-action" id="v-pills-user-tab" data-toggle="pill"
+            href="#v-pills-users" role="tab">Quản lý người dùng</a>
+        </div>
+      </div>
+
+      <!-- Content for Thêm thể loại -->
+      <div class="col-md-9 col-12">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-category" role="tabpanel">
+            <h2>Thêm thể loại</h2>
+            <form action="/addCategory" method="post">
+              <div class="form-group">
+                <label for="categoryName">Tên Thể loại</label>
+                <input type="text" class="form-control" id="categoryName" name="categoryName"
+                  placeholder="Nhập tên thể loại">
+              </div>
+              <button type="submit" class="btn btn-primary">Thêm thể loại</button>
+            </form>
+          </div>
+
+          <div class="tab-pane fade" id="v-pills-brand" role="tabpanel">
+            <h2>Thêm nhãn hàng</h2>
+            <form action="/addBrand" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="brandName">Tên Nhãn hàng</label>
+                <input type="text" class="form-control" id="brandName" name="brandName"
+                  placeholder="Nhập tên nhãn hàng">
+              </div>
+              <div class="form-group">
+                <label for="brandLogo">Logo Nhãn hàng</label>
+                <input type="file" class="form-control" id="brandLogo" name="brandLogo" />
+              </div>
+              <button type="submit" class="btn btn-primary">Thêm nhãn hàng</button>
+            </form>
+          </div>
+
+
+          <div class="tab-pane fade " id="v-pills-product" role="tabpanel">
+            <h2>Thêm sản phẩm</h2>
+            <form action="/addProduct" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="productName">Tên Giày</label>
+                <input type="text" class="form-control" id="productName" name="productName"
+                  placeholder="Nhập tên sản phẩm">
+              </div>
+              <div class="form-group">
+                <label for="productDescription">Mô tả</label>
+                <textarea class="form-control" id="productDescription" name="productDescription" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="giaMoi">Giá mới</label>
+                <input type="text" class="form-control" id="giaMoi" name="giaMoi" placeholder="Nhập giá mới">
+              </div>
+              <div class="form-group">
+                <label for="giaCu">Giá cũ</label>
+                <input type="text" class="form-control" id="giaCu" name="giaCu" placeholder="Nhập giá cũ">
+              </div>
+              <div class="form-group">
+                <label for="theLoai">Thể loại</label>
+                <input type="text" class="form-control" id="theLoai" name="theLoai" placeholder="Nhập thể loại">
+              </div>
+              <div class="form-group">
+                <label for="nhanHang">Nhãn hàng</label>
+                <input type="text" class="form-control" id="nhanHang" name="nhanHang" placeholder="Nhập nhãn hàng">
+              </div>
+              <div class="form-group">
+                <label for="avatar">Ảnh bìa</label>
+                <input type="file" class="form-control" id="avatar" name="banner" />
+              </div>
+              <div class="form-group">
+                <label for="gallery">Nhiều ảnh</label>
+                <input type="file" class="form-control" id="gallery" name="arrayImages" multiple />
+              </div>
+
+              <button id="push" type="submit" class="btn" style="background-color: orange; color: white;">Thêm sản
+                phẩm</button>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="v-pills-categorys" role="tabpanel">
+            <h2>Quản lý thể loại</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên Thể loại</th>
+                  <!-- Add more columns if needed -->
+                </tr>
+              </thead>
+              <tbody>
+                <% categorys.forEach((item)=> { %>
+                  <tr>
+                    <td>
+                      <%= item._id %>
+                    </td>
+                    <td>
+                      <%= item.category%>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-danger">Xóa</button>
+                    </td>
+                  </tr>
+
+                  <% }); %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="v-pills-brands" role="tabpanel">
+            <h2>Quản lý nhãn hàng</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên nhãn hàng</th>
+                  <!-- Add more columns if needed -->
+                </tr>
+              </thead>
+              <tbody>
+                <% authors.forEach((item)=> { %>
+                  <tr>
+                    <td>
+                      <%= item._id %>
+                    </td>
+                    <td>
+                      <%= item.author%>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-danger">Xóa</button>
+                    </td>
+                  </tr>
+
+                  <% }); %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="tab-pane fade" id="v-pills-products" role="tabpanel">
+            <h2>Quản lý sản phẩm</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên Sản phẩm</th>
+                  <th>Thể loại</th>
+                  <th>Nhãn hàng</th>
+                  <th>Giá cũ</th>
+                  <th>Giá mới</th>
+                  <!-- Add more columns if needed -->
+                </tr>
+              </thead>
+              <tbody>
+                <% products.forEach((item)=> { %>
+                  <tr>
+                    <td>
+                      <%= item._id %>
+                    </td>
+                    <td>
+                      <%= item.title%>
+                    </td>
+                    <td>
+                      <%= item.category%>
+                    </td>
+                    <td>
+                      <%= item.author%>
+                    </td>
+                    <td>
+                      <%= item.priceOld%>
+                    </td>
+                    <td>
+                      <%= item.priceNew%>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-danger">Xóa</button>
+                    </td>
+                  </tr>
+
+                  <% }); %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="v-pills-users" role="tabpanel">
+            <h2>Quản lý người dùng</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Email</th>
+                  <th>Tên đăng nhập</th>
+                  <th>Họ và tên</th>
+                  <!-- Add more columns if needed -->
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach((item)=> { %>
+                  <tr>
+                    <td>
+                      <%= item._id %>
+                    </td>
+                    <td>
+                      <%= item.email%>
+                    </td>
+                    <td>
+                      <%= item.username%>
+                    </td>
+                    <td>
+                      <%= item.fullname%>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-danger">Xóa</button>
+                    </td>
+                  </tr>
+
+                  <% }); %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <!-- Other content sections go here -->
+
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
