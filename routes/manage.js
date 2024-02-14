@@ -21,4 +21,6 @@ router.put('/updateProductApi',manageApiController.updateManageApi);
 router.delete('/deleteProductApi',manageApiController.deleteManageApi);
 
 
+router.get('/listFindCateApi',manageApiController.listFindCateApi);
+
 module.exports = router;

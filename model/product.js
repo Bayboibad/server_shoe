@@ -18,6 +18,8 @@ const productShema = new db.mongoose.Schema({
         required: true,
     },
     describe: String,
+    number: Number,
+    size:[String],
     banner: String,
     arryImages:[String]
 }, { collection: "tb_product", timestamps: true });

@@ -1,5 +1,7 @@
 const myModel = require('../model/product');
 var multer = require('multer');
+const socket = require("../socket");
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "uploads/")
@@ -23,6 +25,8 @@ exports.addProduct = async (req, res, next) => {
                 const giaCu = req.body.giaCu;
                 const theLoai = req.body.theLoai;
                 const nhanHang = req.body.nhanHang;
+                const productNumber = req.body.soLuong;
+                const productSizes = req.body.productSizes;
                 const avatarPath = req.files.banner ? req.files.banner[0].path : null;
                 const imagesPaths = req.files.arrayImages ? req.files.arrayImages.map(file => file.path) : [];
 
@@ -34,12 +38,14 @@ exports.addProduct = async (req, res, next) => {
                     priceOld:giaCu,
                     describe:productDescription,
                     banner: avatarPath,
+                    number:productNumber,
+                    size:productSizes,
                     arryImages: imagesPaths,
                 };
 
                 let kq = await myModel.create(product);
+                socket.io.emit("new msg", "Thêm Thành công");
                 console.log(kq);
-              //  socket.io.emit("new msg", "Thêm Thành công");
                 res.redirect("/");
             } catch (e) {
                 console.log('lỗi', e);

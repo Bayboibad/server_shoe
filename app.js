@@ -10,6 +10,7 @@ var manageRouter = require('./routes/manage');
 var authorRouter = require('./routes/author');
 var categoryRouter = require('./routes/category');
 var userRouter = require('./routes/users');
+var cmtRouter = require('./routes/comment');
 var app = express();
 
 // view engine setup
@@ -28,6 +29,8 @@ app.use('/manage', manageRouter);
 app.use('/author',authorRouter);
 app.use('/category', categoryRouter);
 app.use('/user',userRouter);
+app.use('/comment',cmtRouter);
+app.use("/uploads", express.static("uploads"));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -19,7 +19,7 @@ exports.addManageApi = async (req, res, next) => {
         try {
             await mongoose.connect(api_url);
 
-            const { title, author, category, priceNew, priceOld, describe } = req.body;
+            const { title, author, category, priceNew,number,size, priceOld, describe } = req.body;
 
             if (!title || !author) {
                 return res.status(400).json({ check: "Dữ liệu trống" });
@@ -31,6 +31,7 @@ exports.addManageApi = async (req, res, next) => {
             const arryImagesPaths = req.files['arryImages'] ? req.files['arryImages'].map(file => file.path) : [];
             const newManage = new myModel({
                 title, author, category, priceNew, priceOld, describe,
+                number,size,
                 banner: bannerPath,
                 arryImages: arryImagesPaths,
             });
@@ -113,6 +114,8 @@ exports.listAllProduct = async (req, res, next) => {
             priceOld: data.priceOld,
             priceNew: data.priceNew,
             banner: data.banner,
+            number: data.number,
+            size:data.size,
             arryImages: data.arryImages,
             createdAt: data.createdAt,
         }));
@@ -122,3 +125,29 @@ exports.listAllProduct = async (req, res, next) => {
         return res.status(500).json({ check: "Lỗi" });
     }
 };
+exports.listFindCateApi= async(req,res,next)=>{
+    try {
+        await mongoose.connect(api_url);
+        const{category} = req.query;
+        const products = await myModel.find({category:category})
+
+        const dataProduct = products.map((data) => ({
+            id: data.id,
+            title: data.title,
+            category:data.category,
+            author: data.author.author, // Assuming 'author' is a field in Author model
+            describe: data.describe,
+            priceOld: data.priceOld,
+            priceNew: data.priceNew,
+            banner: data.banner,
+            number: data.number,
+            size:data.size,
+            arryImages: data.arryImages,
+            createdAt: data.createdAt,
+        }));
+        return res.status(200).json(dataProduct);
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ check: "Lỗi" });
+    }
+}

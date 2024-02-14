@@ -9,7 +9,7 @@ exports.addCommentApi = async (req, res, next) => {
         if (!id_user || !id_product || !content) {
             return res.status(400).json({ check: "Dữ liệu trống" });
         }
-        const newUser = new myModel({ id_user,id_plot, content  });
+        const newUser = new myModel({ id_user,id_product, content  });
         await newUser.save();
         return res.status(200).json(newUser);
     } catch (err) {
@@ -25,7 +25,7 @@ exports.listAllApi = async (req, res, next) => {
       return res.status(400).json({ error: "Dữ liệu trống" });
     }
     let foundComments = await myModel
-      .find({ id_plot: id_plot })
+      .find({ id_product: id_product })
       .populate({
         path: "id_user",
         model: User,
@@ -40,6 +40,7 @@ exports.listAllApi = async (req, res, next) => {
 
     const commentsData = foundComments.map((comment) => ({
       id_user: comment.id_user.username,
+      id_product:comment.id_product,
       content: comment.content,
       createdAt: comment.createdAt,
     }));

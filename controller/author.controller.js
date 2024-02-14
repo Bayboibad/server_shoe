@@ -1,6 +1,7 @@
 const myModel = require('../model/author')
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
+const socket = require("../socket");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "uploads/")
@@ -29,6 +30,8 @@ exports.addAuthor = async (req, res, next) => {
                 banner: bannerFileName
             }
             const kq = await myModel.insertMany(authors);
+            socket.io.emit("new msg", "Thêm Thành công");
+
             res.redirect('/');
             console.log("Thêm thành công" + kq);
         });

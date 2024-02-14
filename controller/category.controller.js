@@ -1,4 +1,6 @@
 const myModel = require('../model/category')
+const socket = require("../socket");
+
 exports.addCategory = async (req, res, next) => {
     if (req.method == 'POST') {
         try {
@@ -8,6 +10,8 @@ exports.addCategory = async (req, res, next) => {
                 category: categoryName,
             }
             const kq = await myModel.create(categorys);
+            socket.io.emit("new msg", "Thêm Thành công");
+
             res.redirect('/');
             console.log("Thêm thành công" + kq);
         } catch (e) {

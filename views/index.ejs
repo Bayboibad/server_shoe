@@ -139,6 +139,41 @@
                 <input type="text" class="form-control" id="nhanHang" name="nhanHang" placeholder="Nhập nhãn hàng">
               </div>
               <div class="form-group">
+                <label for="soLuong">Số lượng</label>
+                <input type="number" class="form-control" id="soLuong" name="soLuong" placeholder="Nhập số lượng">
+              </div>
+              <div class="form-group">
+                <label for="productSizes">Size giày</label><br>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size36" name="productSizes" value="36">
+                  <label class="form-check-label" for="size36">36</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size37" name="productSizes" value="37">
+                  <label class="form-check-label" for="size37">37</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size38" name="productSizes" value="38">
+                  <label class="form-check-label" for="size38">38</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size39" name="productSizes" value="39">
+                  <label class="form-check-label" for="size39">39</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size39" name="productSizes" value="40">
+                  <label class="form-check-label" for="size40">40</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size39" name="productSizes" value="41">
+                  <label class="form-check-label" for="size41">41</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="size39" name="productSizes" value="42">
+                  <label class="form-check-label" for="size42">42</label>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="avatar">Ảnh bìa</label>
                 <input type="file" class="form-control" id="avatar" name="banner" />
               </div>
@@ -219,6 +254,7 @@
                   <th>Nhãn hàng</th>
                   <th>Giá cũ</th>
                   <th>Giá mới</th>
+                  <th>Số lượng</th>
                   <!-- Add more columns if needed -->
                 </tr>
               </thead>
@@ -242,6 +278,9 @@
                     </td>
                     <td>
                       <%= item.priceNew%>
+                    </td>
+                    <td>
+                      <%= item.number %>
                     </td>
                     <td>
                       <button type="submit" class="btn btn-danger">Xóa</button>
